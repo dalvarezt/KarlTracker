@@ -4,39 +4,155 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello World</title>
-
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <title>Karl Egloff | Elbrus Challenge Tracker</title>
+    <!-- Mapbox -->
+    <script src='https://api.mapbox.com/mapbox.js/v3.1.0/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.1.0/mapbox.css' rel='stylesheet' />
+    <style>
+        body {
+            padding-top: 70px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        }
+        
+        .portfolio-item {
+            margin-bottom: 25px;
+        }
+        
+        footer {
+            margin: 50px 0;
+        }
+        
+        #map {
+            position: relative;
+            height: 500px;
+            width: 750px;
+        }
+    </style>
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-</head>
-
-<body>
-    <div class="container">
-        <h1>Welcome.</h1>
-        <div id="nameInput" class="input-group-lg center-block helloInput">
-            <p class="lead">What is your name?</p>
-            <input id="user_name" type="text" class="form-control" placeholder="name" aria-describedby="sizing-addon1" value="" />
-        </div>
-        <p id="response" class="lead text-center"></p>
-    </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script languaje="JavaScript" type="text/javascript">
+        var map = null;
+        var layerGroup = {};
+        (function ($, window, document) {
+            $(function () {
+                L.mapbox.accessToken = 'pk.eyJ1IjoiZGFsdmFyZXp0IiwiYSI6ImNpdDgxenpwcTA5c3Yyb3AyMGVrNWp5MTcifQ.xlqB_vEN2BVApzGgqHXBBA';
+                map = L.mapbox.map('map', 'mapbox.outdoors');
 
-    <script>
-        $('#user_name').keydown(function(e) {
-            if (e.which == 13) { //catch Enter key
-                $.get("/sayHello?user_name=" + $('#user_name').val())
-                    .done(function(data) {
-                        $('#response').html(data);
-                        $('#nameInput').hide();
-                    });
-            }
-        });
+                map.on("load", function () {
+                    var trackRoute = { "type": "Feature", "properties": {}, "geometry": { "type": "LineString", "coordinates": [[42.46029, 43.30413, 0], [42.4613, 43.30611, 0], [42.46132, 43.30622, 0], [42.46132, 43.30798, 0], [42.46124, 43.3107, 0], [42.46059, 43.31305, 0], [42.45999, 43.31416, 0], [42.46069, 43.31629, 0], [42.46078, 43.31723, 0], [42.46078, 43.31723, 0], [42.46076, 43.31752, 0], [42.46053, 43.31843, 0], [42.46006, 43.31983, 0], [42.45941, 43.32103, 0], [42.45905, 43.32225, 0], [42.45905, 43.32307, 0], [42.45901, 43.32381, 0], [42.45892, 43.32505, 0], [42.45892, 43.32655, 0], [42.45885, 43.32785, 0], [42.45887, 43.32778, 0], [42.45885, 43.32776, 0], [42.45881, 43.32779, 0], [42.4589, 43.32776, 0], [42.45888, 43.32823, 0], [42.45845, 43.32939, 0], [42.458, 43.33062, 0], [42.45776, 43.33169, 0], [42.45782, 43.33107, 0], [42.45782, 43.33102, 0], [42.45794, 43.33261, 0], [42.45803, 43.33351, 0], [42.45812, 43.33411, 0], [42.39253, 43.33973, 0], [42.45759, 43.33591, 0], [42.45733, 43.33635, 0], [42.45671, 43.33687, 0], [42.45699, 43.33675, 0], [42.45694, 43.33663, 0], [42.45724, 43.3369, 0], [42.45647, 43.33656, 0], [42.45677, 43.33652, 0], [42.45664, 43.33694, 0], [42.45701, 43.33689, 0], [42.45675, 43.33668, 0], [42.45673, 43.33678, 0], [42.45656, 43.33788, 0], [42.45621, 43.33886, 0], [42.45491, 43.33955, 0], [42.45662, 43.33744, 0], [42.45802, 43.33394, 0], [42.4581, 43.33006, 0], [42.45881, 43.32836, 0], [42.45888, 43.32497, 0], [42.45905, 43.32312, 0], [42.45907, 43.32286, 0], [42.46038, 43.31891, 0], [42.46087, 43.31733, 0], [42.46078, 43.31808, 0], [42.46042, 43.31893, 0], [42.46038, 43.31485, 0], [42.46121, 43.31031, 0], [42.46106, 43.30545, 0], [42.4634, 43.30136, 0], [42.46317, 43.29865, 0], [42.46317, 43.29869, 0], [42.46321, 43.29862, 0], [42.46319, 43.29865, 0], [42.46327, 43.29592, 0], [42.47197, 43.30595, 0], [42.45911, 43.29053, 0], [42.45847, 43.28829, 0], [42.4601, 43.28479, 0], [42.46023, 43.28093, 0], [42.46031, 43.27773, 0], [42.46027, 43.27776, 0], [42.46139, 43.27703, 0], [42.47278, 43.26817, 0], [42.4769, 43.26684, 0], [42.47707, 43.26688, 0], [42.47703, 43.26683, 0], [42.47707, 43.26693, 0], [42.47705, 43.26688, 0]] } };
+                    var trackLayer = L.mapbox.featureLayer().addTo(map);
+                    trackLayer.setGeoJSON(trackRoute);
+                    map.fitBounds(trackLayer.getBounds());
+                    getSpotData();
+                });
+            });
+        }(window.jQuery, window, document));
+        function getSpotData() {
+            $.get("/spotData", function (data, status) {
+                $.each(data, function (i, e) {
+                    if (!layerGroup[e.properties.id]) {
+                        var layer = L.geoJson(e);
+                        map.addLayer(layer);
+                        layer.bindTooltip(i + ": " + e.properties.timestamp);
+                        layerGroup[e.properties.id] = layer;
+                    }
+                });
+                setTimeout(getSpotData, 10000);
+            });
+        };
     </script>
+</head>
+
+<body>
+       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Karl Egloff</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About the Challenge</a>
+                    </li>
+                    <li>
+                        <a href="#">About this Page</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <div class="container">
+        <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Elbrus Challenge
+                    <small>World Record Beating 2017</small>
+                </h1>
+            </div>
+        </div>
+        <!-- Portfolio Item Row -->
+        <div class="row">
+            <div class="col-md-8">
+                <div id="map"></div>
+            </div>
+        
+            <div class="col-md-4">
+                <h3>Tweeter Feed</h3>
+            </div>
+        </div>
+        <!-- /row -->
+        <div class="row">
+
+                <div class="col-lg-12">
+                    <h3 class="page-header">Con el auspicio de:</h3>
+                </div>
+
+                <div class="col-sm-3 col-xs-6">
+                    <a href="#">
+                        <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                    </a>
+                </div>
+
+                <div class="col-sm-3 col-xs-6">
+                    <a href="#">
+                        <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                    </a>
+                </div>
+
+                <div class="col-sm-3 col-xs-6">
+                    <a href="#">
+                        <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                    </a>
+                </div>
+
+                <div class="col-sm-3 col-xs-6">
+                    <a href="#">
+                        <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
 </body>
 
 </html>

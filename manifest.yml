@@ -1,5 +1,5 @@
 ---
 applications:
-- name:    hello-node
-  host:    hello-node
+- name:    KarlEgloff_ElbrusChallenge
+  host:    elbruschal2017
   memory:  128M
