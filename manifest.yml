@@ -1,5 +1,5 @@
 ---
 applications:
 - name:    KarlEgloff_ElbrusChallenge
-  host:    elbruschal2017
-  memory:  128M
+  host:    elbruschallenge
+  memory:  256M
