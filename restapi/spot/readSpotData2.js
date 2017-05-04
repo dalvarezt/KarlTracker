@@ -31,29 +31,47 @@ exports.getData2 = function(request, response) {
                     features:[]
                   };
 
-                  var index = [];
 
-                  // build the index
-                  for (var x in body.response.feedMessageResponse.messages) {
-                     index.push(x);
-                  }
 
-                  index.sort(function (a, b) {
-                    return a == b ? 0 : (a > b ? 1 : -1);
-                  });
+                  var textoArreglo=JSON.stringify(body.response.feedMessageResponse.messages);
+                  textoArreglo='['+textoArreglo+']';
+
+                  var mensajes=JSON.parse(textoArreglo);
+                  // // build the index
+                  // for (var x in body.response.feedMessageResponse.messages) {
+                  //    index.push(x);
+                  // }
+                  //
+                  // index.sort(function (a, b) {
+                  //   return a == b ? 0 : (a > b ? 1 : -1);
+                  // });
 
                   if(body.response.feedMessageResponse.count>0)
                   {
                     for(var i=0;i<body.response.feedMessageResponse.count;i++) {
 
-                    var latitud=body.response.feedMessageResponse.messages[index[i]].latitude;
-                    var longitud=body.response.feedMessageResponse.messages[index[i]].longitude;
+
+                    var latitud=mensajes[i].message.latitude;
+                    var longitud=mensajes[i].message.longitude;
+                    var altitud=mensajes[i].message.altitude;
+                    var id=mensajes[i].message.id;
+                    var timestamp=mensajes[i].message.dateTime;
+
+                    // var latitud=body.response.feedMessageResponse.messages[index[i]].latitude;
+                    // var longitud=body.response.feedMessageResponse.messages[index[i]].longitude;
+                    // var altitud=body.response.feedMessageResponse.messages[index[i]].altitude;
+                    // var id=body.response.feedMessageResponse.messages[index[i]].id;
+                    // var timestamp=body.response.feedMessageResponse.messages[index[i]].dateTime;
+
                          var feature={
                            "type": "Feature",
-                           "properties": {},
+                           "properties": {
+                             "id":id,
+                             "timestamp":timestamp,
+                           },
                            "geometry": {
                              "type": "Point",
-                             "coordinates": [latitud,longitud]
+                             "coordinates": [latitud,longitud,altitud]
                              }
                          };
                          respuesta.features.push(feature);
