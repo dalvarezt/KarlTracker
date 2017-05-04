@@ -30,20 +30,33 @@ exports.getData2 = function(request, response) {
                     type:'FeatureCollection',
                     features:[]
                   };
+
+                  var index = [];
+
+                  // build the index
+                  for (var x in body.response.feedMessageResponse.messages) {
+                     index.push(x);
+                  }
+
+                  index.sort(function (a, b) {
+                    return a == b ? 0 : (a > b ? 1 : -1);
+                  });
+
                   if(body.response.feedMessageResponse.count>0)
                   {
                     for(var i=0;i<body.response.feedMessageResponse.count;i++) {
-                        var aux=body.response.feedMessageResponse.messages.message;
-                        var feature={
-                          "type": "Feature",
-                          "properties": {},
-                          "geometry": {
-                            "type": "Point",
-                            "coordinates": [aux.latitude,aux.longitude]
-                            }
-                        };
-                        respuesta.features.push(feature);
-                        console.log(aux.latitude);
+
+                    var latitud=body.response.feedMessageResponse.messages[index[i]].latitude;
+                    var longitud=body.response.feedMessageResponse.messages[index[i]].longitude;
+                         var feature={
+                           "type": "Feature",
+                           "properties": {},
+                           "geometry": {
+                             "type": "Point",
+                             "coordinates": [latitud,longitud]
+                             }
+                         };
+                         respuesta.features.push(feature);
                         }
 
                   }else {
