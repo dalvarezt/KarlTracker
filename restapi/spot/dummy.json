@@ -1,0 +1,127 @@
+{
+	"response": {
+		"feedMessageResponse": {
+			"count": 6,
+			"feed": {
+				"id": "0kMtm6Y2HhD8MjczhH1oy5z0bLhQrlQrB",
+				"name": "ElbrusChallenge",
+				"description": "ElbrusChallenge",
+				"status": "ACTIVE",
+				"usage": 0,
+				"daysRange": 7,
+				"detailedMessageShown": true,
+				"type": "SHARED_PAGE"
+			},
+			"totalCount": 6,
+			"activityCount": 0,
+			"messages": [{
+	"message": {
+		"@clientUnixTime": "0",
+		"id": 738307846,
+		"messengerId": "0-2409976",
+		"messengerName": "Karl Egloff",
+		"unixTime": 1493827648,
+		"messageType": "UNLIMITED-TRACK",
+		"latitude": 42.477892,
+		"longitude": 43.266869,
+		"modelId": "SPOT3",
+		"showCustomMsg": "Y",
+		"dateTime": "2017-05-03T16:07:28+0000",
+		"batteryState": "GOOD",
+		"hidden": 0,
+		"altitude": 2378
+	}
+},{
+  "message": {
+		"@clientUnixTime": "0",
+		"id": 738307846,
+		"messengerId": "0-2409976",
+		"messengerName": "Karl Egloff",
+		"unixTime": 1493827648,
+		"messageType": "UNLIMITED-TRACK",
+		"latitude": 42.472566,
+		"longitude": 43.268117,
+		"modelId": "SPOT3",
+		"showCustomMsg": "Y",
+		"dateTime": "2017-05-03T16:07:28+0000",
+		"batteryState": "GOOD",
+		"hidden": 0,
+		"altitude": 2378
+	}
+  },
+	{
+	  "message": {
+			"@clientUnixTime": "0",
+			"id": 738307846,
+			"messengerId": "0-2409976",
+			"messengerName": "Karl Egloff",
+			"unixTime": 1493827648,
+			"messageType": "UNLIMITED-TRACK",
+			"latitude": 42.468028,
+			"longitude": 43.269194,
+			"modelId": "SPOT3",
+			"showCustomMsg": "Y",
+			"dateTime": "2017-05-03T16:07:28+0000",
+			"batteryState": "GOOD",
+			"hidden": 0,
+			"altitude": 2378
+		}
+	  },
+		{
+		  "message": {
+				"@clientUnixTime": "0",
+				"id": 738307846,
+				"messengerId": "0-2409976",
+				"messengerName": "Karl Egloff",
+				"unixTime": 1493827648,
+				"messageType": "UNLIMITED-TRACK",
+				"latitude": 42.466623,
+				"longitude": 43.270679,
+				"modelId": "SPOT3",
+				"showCustomMsg": "Y",
+				"dateTime": "2017-05-03T16:07:28+0000",
+				"batteryState": "GOOD",
+				"hidden": 0,
+				"altitude": 2378
+			}
+		  },
+			{
+			  "message": {
+					"@clientUnixTime": "0",
+					"id": 738307846,
+					"messengerId": "0-2409976",
+					"messengerName": "Karl Egloff",
+					"unixTime": 1493827648,
+					"messageType": "UNLIMITED-TRACK",
+					"latitude": 42.466111,
+					"longitude": 43.272507,
+					"modelId": "SPOT3",
+					"showCustomMsg": "Y",
+					"dateTime": "2017-05-03T16:07:28+0000",
+					"batteryState": "GOOD",
+					"hidden": 0,
+					"altitude": 2378
+				}
+			  },{
+				  "message": {
+						"@clientUnixTime": "0",
+						"id": 738307846,
+						"messengerId": "0-2409976",
+						"messengerName": "Karl Egloff",
+						"unixTime": 1493827648,
+						"messageType": "UNLIMITED-TRACK",
+						"latitude": 42.461981,
+						"longitude": 43.275887,
+						"modelId": "SPOT3",
+						"showCustomMsg": "Y",
+						"dateTime": "2017-05-03T16:07:28+0000",
+						"batteryState": "GOOD",
+						"hidden": 0,
+						"altitude": 2378
+					}
+				  }]
+
+		}
+	}
+}
+;

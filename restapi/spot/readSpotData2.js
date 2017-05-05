@@ -5,9 +5,27 @@ var gju = require('geojson-utils');
 
 var lastValidPointIndex;
 
+function esMeta(puntoLatitud,puntoLongitud)
+{
+   var latitudMeta='42.466112';
+   var longitudMeta='43.272508';
+
+   var metros=gju.pointDistance(
+     {type: 'Point', coordinates:[puntoLatitud,puntoLongitud]},
+     {type: 'Point', coordinates:[latitudMeta,longitudMeta]}
+   );
+
+   if(metros>50)
+   {
+    return false;
+   }
+    else {
+      return true;
+    }
+}
 
 exports.getData2 = function(request, response) {
-
+  var direccion='A';
   var body={};
 
 
@@ -17,9 +35,9 @@ exports.getData2 = function(request, response) {
   };
 
   var options2 = {
-    host: '172.16.222.151',
-    port:9999,
-    path: '/'
+    host: 'localhost',
+    port:4000,
+    path: '/dummy'
   };
 
   var req = https.get(options, function(res) {
@@ -29,6 +47,7 @@ exports.getData2 = function(request, response) {
       bodyChunks.push(chunk);
     }).on('end', function() {
       body = JSON.parse(bodyChunks);
+
       var respuesta={
         type:'FeatureCollection',
         features:[]
@@ -39,7 +58,12 @@ exports.getData2 = function(request, response) {
       var textoArreglo=JSON.stringify(body.response.feedMessageResponse.messages);
       textoArreglo='['+textoArreglo+']';
 
-      var mensajes=JSON.parse(textoArreglo);
+
+
+      var mensajes=JSON.parse(textoArreglo); //****************************USAR ESTA*************************************
+      //var mensajes=body.response.feedMessageResponse.messages;
+
+      //******************************************************************************************************************************************//
       // // build the index
       // for (var x in body.response.feedMessageResponse.messages) {
       //    index.push(x);
@@ -48,6 +72,7 @@ exports.getData2 = function(request, response) {
       // index.sort(function (a, b) {
       //   return a == b ? 0 : (a > b ? 1 : -1);
       // });
+      //******************************************************************************************************************************************//
 
       if(body.response.feedMessageResponse.count>0)
       {
@@ -86,6 +111,7 @@ exports.getData2 = function(request, response) {
                 "properties": {
                   "id":id,
                   "timestamp":timestamp,
+                  "direccion":direccion
                 },
                 "geometry": {
                   "type": "Point",
@@ -93,6 +119,15 @@ exports.getData2 = function(request, response) {
                 }
               };
               respuesta.features.push(feature);
+              if (direccion=='A')
+              {
+                  var flag=esMeta(latitudFinal,longitudFinal);
+                  if(flag)
+                  {
+                    console.log('LLEGO META');
+                    direccion='D';
+                  }
+             }
               lastValidPointIndex=i;
             }
           }else {
@@ -102,6 +137,7 @@ exports.getData2 = function(request, response) {
               "properties": {
                 "id":id,
                 "timestamp":timestamp,
+                "direccion":'A'
               },
               "geometry": {
                 "type": "Point",
