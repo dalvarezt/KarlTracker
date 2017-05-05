@@ -80,6 +80,7 @@ exports.getData2 = function(request, response) {
 
             if (metros<=800)
             {
+              console.log('INSERT '+i);
               var feature={
                 "type": "Feature",
                 "properties": {
@@ -95,6 +96,7 @@ exports.getData2 = function(request, response) {
               lastValidPointIndex=i;
             }
           }else {
+            console.log('INSERT 0');
             var feature={
               "type": "Feature",
               "properties": {
@@ -110,7 +112,7 @@ exports.getData2 = function(request, response) {
             lastValidPointIndex=i;
           }
         }
-
+            console.log('Last Valid Point:'+lastValidPointIndex);
       }else {
         respuesta={}
       }
