@@ -49,12 +49,14 @@
                 map = L.mapbox.map('map', 'mapbox.outdoors');
 
                 map.on("load", function () {
-                    $.ajax({dataType:"json", url:"/elbrustrack.json", success:function(trackRoute) {
-                       var trackLayer = L.mapbox.featureLayer( trackRoute).addTo(map);
-                       trackLayer.setStyle({color:"#05158c", weight: 8});
-                        map.fitBounds(trackLayer.getBounds());
-                        //getSpotData();
-                    }});
+                    $.ajax({
+                        dataType: "json", url: "/elbrustrack.json", success: function (trackRoute) {
+                            var trackLayer = L.mapbox.featureLayer(trackRoute).addTo(map);
+                            trackLayer.setStyle({ color: "#05158c", weight: 8 });
+                            map.fitBounds(trackLayer.getBounds());
+                            //getSpotData();
+                        }
+                    });
                 });
             });
         }(window.jQuery, window, document));
@@ -77,16 +79,17 @@
 <body>
 
     <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9";
-          fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.9";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 
-       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -96,13 +99,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="" data-toggle="modal" data-target="#myModal">Who Am I?</a>
+                <a class="navbar-brand" href="" data-toggle="modal" data-target="#myModal">Karl Egloff</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="navbar-brand" href="index.html">&nbsp; &nbsp; &nbsp;The Challenge</a>
+                        <a class="navbar-brand" href="" data-toggle="modal" data-target="#ModalChallenge">&nbsp; &nbsp; &nbsp;The Challenge</a>
                     </li>
                     <li>
                         <a class="navbar-brand" href="" data-toggle="modal" data-target="#myModalAbout">&nbsp; &nbsp; &nbsp;About this Page</a>
@@ -118,42 +121,43 @@
         <!-- Portfolio Item Heading -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header"><font color="#000000">Elbrus Challenge
-                    <small><font color="#000000">World Record Beating 2017</small>
+                <h1 class="page-header">
+                    <font color="#000000">Elbrus Challenge
+                        <small><font color="#000000">World Record Beating 2017</small>
 
-                      <!-- Display the countdown timer in an element -->
-                      <p id="demo" style="float: right; font-size: x-large"></p>
+                        <!-- Display the countdown timer in an element -->
+                        <p id="demo" style="float: right; font-size: x-large"></p>
 
-                      <script>
-                      // Set the date we're counting down to
-                      var countDownDate = new Date("May 7, 2017 09:00:00").getTime();
+                        <script>
+                            // Set the date we're counting down to
+                            var countDownDate = new Date("May 7, 2017 09:00:00").getTime();
 
-                      // Update the count down every 1 second
-                      var x = setInterval(function() {
+                            // Update the count down every 1 second
+                            var x = setInterval(function () {
 
-                        // Get todays date and time
-                        var now = new Date().getTime();
+                                // Get todays date and time
+                                var now = new Date().getTime();
 
-                        // Find the distance between now an the count down date
-                        var distance = countDownDate - now;
+                                // Find the distance between now an the count down date
+                                var distance = countDownDate - now;
 
-                        // Time calculations for days, hours, minutes and seconds
-                        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                                // Time calculations for days, hours, minutes and seconds
+                                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                        // Display the result in the element with id="demo"
-                        document.getElementById("demo").innerHTML = "Time to race: " + days + "d " + hours + "h "
-                        + minutes + "m " + seconds + "s ";
+                                // Display the result in the element with id="demo"
+                                document.getElementById("demo").innerHTML = "Time to race: " + days + "d " + hours + "h "
+                                    + minutes + "m " + seconds + "s ";
 
-                        // If the count down is finished, write some text
-                        if (distance < 0) {
-                          clearInterval(x);
-                          document.getElementById("demo").innerHTML = "EXPIRED";
-                        }
-                      }, 1000);
-                      </script>
+                                // If the count down is finished, write some text
+                                if (distance < 0) {
+                                    clearInterval(x);
+                                    document.getElementById("demo").innerHTML = "EXPIRED";
+                                }
+                            }, 1000);
+                        </script>
 
                 </h1>
             </div>
@@ -166,11 +170,8 @@
             </div>
 
             <div class="col-md-4">
-                <a class="fb-page"
-                      data-tabs="timeline,messages"
-                      data-href="https://www.facebook.com/Karl-Egloff-1472698929648386/"
-                      data-width="480"
-                      data-hide-cover="false">
+                <a class="fb-page" data-tabs="timeline,messages" data-href="https://www.facebook.com/Karl-Egloff-1472698929648386/" data-width="480"
+                    data-hide-cover="false">
                   </a>
             </div>
 
@@ -178,86 +179,129 @@
         <!-- /row -->
         <div class="row">
 
-                <div class="col-lg-12">
-                    <h3 class="page-header">Con el auspicio de:</h3>
-                </div>
+            <div class="col-lg-12">
+                <h3 class="page-header">Con el auspicio de:</h3>
+            </div>
 
-                <div class="col-sm-3 col-xs-6">
-                    <a href="http://www.cumbretours.com/" target="_blank">
-                        <img class="img-responsive portfolio-item" src="images/cumbre.png" alt="">
-                    </a>
-                </div>
-
-                <div class="col-sm-3 col-xs-6">
-                    <a href="https://www.ibm.com/ec-es/" target="_blank">
-                        <img class="img-responsive portfolio-item" src="images/IBM.png" alt="">
-                    </a>
-                </div>
-
-                <div class="col-sm-3 col-xs-6">
-                    <a href="https://www.mammut.ch/" target="_blank">
-                        <img class="img-responsive portfolio-item" src="images/mammut.png" alt="">
-                    </a>
-                </div>
-
-                <div class="col-sm-3 col-xs-6">
-                    <a href="https://www.movistar.com.ec/" target="_blank">
+            <div class="col-sm-3 col-xs-6">
+                <a href="https://www.movistar.com.ec/" target="_blank">
                         <img class="img-responsive portfolio-item" src="images/movi.jpg" alt="">
                     </a>
+            </div>
+            <div class="col-sm-3 col-xs-6">
+                <a href="https://www.mammut.ch/" target="_blank">
+                        <img class="img-responsive portfolio-item" src="images/mammut.png" alt="">
+                    </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="http://www.cumbretours.com/" target="_blank">
+                        <img class="img-responsive portfolio-item" src="images/cumbre.png" alt="">
+                    </a>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <a href="https://www.ibm.com/ec-es/" target="_blank">
+                        <img class="img-responsive portfolio-item" src="images/IBM.png" alt="">
+                    </a>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Karl Egloff</h4>
                 </div>
-
+                <div class="modal-body">
+                    <img class="img-responsive portfolio-item" src="images/bio.jpg" alt="">
+                    <p style="font-style: oblique" align="justify">
+                        Karl Egloff, 35, was born in Quito to a Swiss father and an Ecuadorian mother. Since an early age his father Charly, a renowned
+                        Swiss mountaineer in Ecuador, took him along on his expeditions where Karl found his passion for
+                        the mountain. At age 15 he had already ascended mountains more than 5,000 meters high over 250 times
+                        and had surpassed the barrier of 6,000 meters above sea level 30 times. Now he is a tour leader and
+                        owner of his own mountaineering agency Cumbre Tours since 2013. In August 2014, Karl gained international
+                        notoriety by breaking the world record for speed climbing up Mount Kilimanjaro and the upped the
+                        ante by crushing the world record to the top and back of Aconcagua, the highest peak in the Americas
+                        in February 2015. His project is to do the 7 summits for fastest known times in speed climbing. Karl
+                        is known for more than his mountaineering prowess. He started mountain bike racing in 2008, and since,
+                        Karl has won 70 gold medals in national races and has represented Ecuador in over 6 international
+                        cycling events, including 2 international participations in the highest category. He now is one of
+                        the most respected trail runners in Ecuador and South America with many competitions won locally
+                        and internationally.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
 
         </div>
+    </div>
 
-        <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-          <div class="modal-dialog">
+    <!-- ModalAbout -->
+    <div id="myModalAbout" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Karl Egloff</h4>
-              </div>
-              <div class="modal-body">
-                <img class="img-responsive portfolio-item" src="images/bio.jpg" alt="">
-                <p style="font-style: oblique" align="justify">
-                Karl Egloff, 35, was born in Quito to a Swiss father and an Ecuadorian mother. Since an early age his father Charly, a renowned Swiss mountaineer in Ecuador, took him along on his expeditions where Karl found his passion for the mountain. At age 15 he had already ascended mountains more than 5,000 meters high over 250 times and had surpassed the barrier of 6,000 meters above sea level 30 times. Now he is a tour leader and owner of his own mountaineering agency Cumbre Tours since 2013. In August 2014, Karl gained international notoriety by breaking the world record for speed climbing up Mount Kilimanjaro and the upped the ante by crushing the world record to the top and back of Aconcagua, the highest peak in the Americas in February 2015. His project is to do the 7 summits for fastest known times in speed climbing. Karl is known for more than his mountaineering prowess. He started mountain bike racing in 2008, and since, Karl has won 70 gold medals in national races and has represented Ecuador in over 6 international cycling events, including 2 international participations in the highest category. He now is one of the most respected trail runners in Ecuador and South America with many competitions won locally and internationally.
-                </p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">About this page</h4>
+                </div>
+                <div class="modal-body">
+
+                    <p style="font-style: oblique" align="justify">
+                        This page displays a live tracking of Karl's ascent to Elbrus peak, showing the location captured by a satellite connected
+                        device he will be carrying. Due to the elevation and geographical area, the location is approximate
+                        with a few meters of error. The frequency at which the device sends each report is of 5 minutes.
+                        Some reported locations could be ignored because they might come out of range. <br
+                        />The site was built by a small team of IBMers in Ecuador whom follow Karl's adventures and wanted
+                        to know how it goes beating the current record of speed climbing of this mountain. It is still a
+                        little rough on the edges as we could only spend a few hours developing it. The runtime is node.js
+                        and it is running on <a href="//bluemix.net" target=blank>IBM Bluemix</a>.
+                    </p>
+                    <img class="img-responsive portfolio-item" width="400px" height="400px" src="images/bluemix.png" alt="Bluemix Logo">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
 
-          </div>
         </div>
-
-        <!-- ModalAbout -->
-        <div id="myModalAbout" class="modal fade" role="dialog">
-          <div class="modal-dialog">
+    </div>
+    <!-- ModalChallenge -->
+    <div id="ModalChallenge" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">About this page</h4>
-              </div>
-              <div class="modal-body">
-                
-                <p style="font-style: oblique" align="justify">
-                This page displays a live tracking of Karl's ascent to Elbrus peak, showing the location captured by a satellite connected device he will be carrying. Due to the elevation and geographical area, the location is approximate with a few meters of error. The frequency at which the device sends each report is of 5 minutes. Some reported locations could be ignored because they might come out of range. <br />The site was built by a small team of IBMers in Ecuador whom follow Karl's adventures and wanted to know how it goes beating the current record of speed climbing of this mountain. It is still a little rough on the edges as we could only spend a few hours developing it. The runtime is node.js and it is running on <a href="//bluemix.net" target=blank>IBM Bluemix</a>.
-                </p>
-                <img class="img-responsive portfolio-item" width="400px" height="400px" src="images/bluemix.png" alt="Bluemix Logo">
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">The Challenge</h4>
+                </div>
+                <div class="modal-body">
+
+                    <p style="font-style: oblique" align="justify">
+                        The Seven Summits world record is a project that consists on breaking the record of each of the highest mountain peaks from the seven continents. Elbrus is the highest summit in Europe with 5642 meters. The time to beat is 24km with a positive slope of 3300 meters from Azau (2400 meters) to the top (5642 meters) and back in 4 hours and 39 minutes wich is the current record achieved by Vitaly Shkel in 2014.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
 
-          </div>
         </div>
+    </div>
 
 </body>
 
