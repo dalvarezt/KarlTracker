@@ -17,14 +17,14 @@ var raceIsAscending = true;
  * @return {boolean}
  */
 var isValidPoint = function (point) {
-    if (geojson.lenght === 0) {
+    if (geojson.length === 0) {
         return true;
     }
-    var prevPoint = geojson[geojson.lenght - 1];
+    var prevPoint = geojson[geojson.length - 1];
     if (!prevPoint) {
         return true;
     }
-    if (gju.pointDistance(prevPoint.geometry, point.geometry) > 800) {
+    if (gju.pointDistance(prevPoint.geometry, point.geometry) > 1000) {
         return false;
     }
     return true;
@@ -33,7 +33,7 @@ var isValidPoint = function (point) {
 
 
 var setIsAscending = function (point) {
-    if (geojson.lenght === 0) {
+    if (geojson.length === 0) {
         point.properties["isAscending"] = true;
         return;
     }
@@ -59,7 +59,7 @@ var setIsAscending = function (point) {
     }
 
     var d = gju.pointDistance(point.geometry, { "type": "Point", "coordinates": trackData.geometry.coordinates[0] });
-    console.log((raceIsAscending ? "Asc:" : "Dsc") + d);
+    console.log((raceIsAscending ? "Asc:" : "Dsc:") + d);
     if (!raceIsAscending && d <= 10) {
         point.properties["raceEnded"] = true;
     }
@@ -98,7 +98,7 @@ var getData = function () {
                 return;
             }
             var msgArray = body.response.feedMessageResponse.messages.message;
-            for (var i = msgArray.length - 1; i <= 0; i--) {
+            for (var i = msgArray.length - 1; i >= 0; i--) {
                 if (!geojsonIdx[msgArray[i].id]) {
                     var point = {
                         "type": "Feature",
@@ -117,6 +117,7 @@ var getData = function () {
                         var idx = geojson.push(point);
                         geojsonIdx[point.properties.id] = { "idx": idx - 1, "isValid": true };
                     } else {
+                        console.log("Invalid point detected", JSON.stringify(point));
                         geojsonIdx[point.properties.id] = { "idx": null, "isValid": false };
                     }
                 }

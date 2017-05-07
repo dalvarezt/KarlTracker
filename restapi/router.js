@@ -1,8 +1,8 @@
 var express = require("express");
 var router = express.Router();
 var spot = require("./spot/readSpotData");
-var spot2 = require("./spot/readSpotData2");
+//var chartData=require("./spot/readChartData");
 module.exports=router;
 
 router.get("/spotData", spot.getData);
-router.get("/spotData2", spot2.getData2);
+//router.get("/getChartData", chartData.getChartData );
