@@ -1,9 +1,8 @@
 // Global Variables
 var map = null;
 var layerGroup = {};
-//TODO: Set the real time!!!
-//var raceStartDateTime = new Date("2017-05-07T09:00:00.000+03:00")
-var raceStartDateTime = new Date("2017-05-06T09:30:00.000-05:00");
+var raceStartDateTime = new Date("2017-05-07T06:30:00.000+03:00")
+//var raceStartDateTime = new Date("2017-05-06T09:30:00.000-05:00");
 var raceStarted = Date.now()>=raceStartDateTime.valueOf();
 var raceIsAscending=true;
 var asTargetTime = function() { return 3*3600*1000+29*60*1000; };
@@ -92,7 +91,7 @@ function detectSummit(point) {
         $("#pbd").css("width", 100 + "%").attr("aria-valuenow", 100).html(100 + "%");
         dsClock.set(1);
         dsClock.setText("Est. Time:<br />"+ getTimeString(endRaceTime.valueOf() - summitReachTime.valueOf()));
-        clearInterval(clickInterval);
+        clearInterval(clockInterval);
         clearInterval(spotDataInterval);
     }
 }
